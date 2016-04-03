@@ -20,4 +20,13 @@ class Cart < ActiveRecord::Base
     end
     line_item
   end
+
+  def update_inventory
+    line_items.each do |line_item|
+      line_item.item.inventory -= line_item.quantity 
+      line_item.item.save
+    end
+    
+  end
+
 end
